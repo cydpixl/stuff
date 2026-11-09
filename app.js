@@ -35,7 +35,7 @@ async function api(action, data={}, key=adminKey()) {
 async function loadVideos() {
   if(state.loading) return; state.loading=true;
   try {
-    const res=await fetch(`${API}/rest/v1/watch_videos?select=id,title,filename,object_path,thumbnail_path,duration_seconds,bytes,mime,caption_path,created_at&status=eq.ready&order=created_at.desc&limit=200`, {headers:{apikey:PUBLIC_KEY,Authorization:`Bearer ${PUBLIC_KEY}`},cache:'no-store'});
+    const res=await fetch(`${API}/rest/v1/watch_videos?select=id,title,filename,object_path,thumbnail_path,duration_seconds,bytes,mime,caption_path,created_at&status=eq.ready&order=created_at.desc&limit=200`, {headers:{apikey:PUBLIC_KEY},cache:'no-store'});
     if(!res.ok) throw Error(`Couldn't load videos (${res.status})`);
     state.videos = await res.json(); renderGrid();
   } catch(err) { $('videoGrid').textContent=''; $('emptyState').hidden=true; toast(err.message); }
