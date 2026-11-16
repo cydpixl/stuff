@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5f1">
+  <meta name="description" content="date. — a quiet place to remember your first date.">
+  <title>date.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" class="icons">
+ <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+ <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 16-5-5L5 21"/></symbol>
+ <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14 4H9l-2 3H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-3-3z"/><circle cx="12" cy="13.5" r="3.4"/></symbol>
+ <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+ <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></symbol>
+ <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 .5l3-3a5 5 0 0 0-7-7l-2 2m3 5a5 5 0 0 0-7-.5l-3 3a5 5 0 0 0 7 7l2-2"/></symbol>
+ <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5m-4 0h8"/></symbol>
+ <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 12 7-12 7z"/></symbol>
+ <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+ <symbol id="i-pen" viewBox="0 0 24 24"><path d="m4 20 5-.8 11-11a3 3 0 0 0-4.2-4.2l-11 11L4 20z"/></symbol>
+ <symbol id="i-gif" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4"/><path d="M9 10H6v5h3v-2H8m4-3v5m3-5v5m0-5h3m-3 3h2"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+ <symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+ <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 18v3h16v-3"/></symbol>
+ <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 3h4m-8 4 1 14h10l1-14M10 11v6m4-6v6"/></symbol>
+ <symbol id="i-flip" viewBox="0 0 24 24"><path d="m4 6 3-3 3 3M7 3v11a5 5 0 0 0 5 5h7m1-1-3-3m3 3-3 3M20 18V9a5 5 0 0 0-5-5h-2"/></symbol>
+ <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+ <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 5.9l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+ <symbol id="i-undo" viewBox="0 0 24 24"><path d="m9 14-5-5 5-5M4 9h11a5 5 0 0 1 0 10h-3"/></symbol>
+ <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 17V3m-5 5 5-5 5 5M4 16v5h16v-5"/></symbol>
+</svg>
+<header class="topbar">
+ <a class="wordmark" href="./" aria-label="date home">date<span>.</span></a>
+ <div class="top-center">a little piece of us</div>
+ <div class="top-actions">
+   <span class="saved-status" id="saveState"><span class="save-dot"></span><span>Saved here</span></span>
+   <button class="identity" id="identityBtn" title="Change your name"><span id="userInitial">?</span><span id="userLabel">Your name</span></button>
+   <button class="icon-button help" id="helpBtn" aria-label="Open tutorial">?</button>
+ </div>
+</header>
+<main class="page">
+ <div class="page-top">
+  <div class="overline"><span class="mini-heart">♥</span> A PLACE TO REMEMBER</div>
+  <h1>Our first date<span>.</span></h1>
+  <p class="subtitle">The little things. The whole story.</p>
+ </div>
+ <section class="editor paper" id="writingSection">
+  <div class="paper-head">
+    <div class="paper-label">YOUR STORY</div>
+    <span class="author-line" id="byline">by you</span>
+  </div>
+  <div class="details" id="detailsArea">
+    <label class="detail-field" id="dateField">
+      <svg class="ic"><use href="#i-calendar"/></svg>
+      <span class="field-hint">When</span>
+      <input id="dateInput" type="date" aria-label="First date">
+    </label>
+    <label class="detail-field" id="locationField">
+      <svg class="ic"><use href="#i-pin"/></svg>
+      <span class="field-hint">Where</span>
+      <input id="placeInput" type="text" placeholder="Add a place" maxlength="240" aria-label="Location name">
+    </label>
+    <label class="detail-field address-field">
+      <span class="field-hint">Address</span>
+      <input id="addressInput" type="text" placeholder="Optional" maxlength="320" aria-label="Location address">
+    </label>
+  </div>
+  <div class="writing" id="storyArea">
+    <textarea id="storyInput" aria-label="Our first date story" placeholder="Tell me everything. The way it started, what made you smile, the parts you want to remember..." spellcheck="true"></textarea>
+    <div class="wordline"><span id="wordCount">0 words</span><span>No character limit</span></div>
+  </div>
+  <div class="attachments" id="attachments" hidden><div class="attachments-top"><span>ATTACHED MOMENTS</span><span id="attachmentCount">0</span></div><div class="media-grid" id="mediaGrid"></div></div>
+  <div class="tools" id="toolsArea">
+   <div class="toolset">
+    <button class="tool" id="uploadBtn" title="Add photos, videos or files"><svg class="ic"><use href="#i-plus"/></svg><span>Add files</span></button>
+    <button class="tool" id="cameraBtn" title="Open camera"><svg class="ic"><use href="#i-camera"/></svg><span>Camera</span></button>
+    <button class="tool" id="gifBtn" title="Search GIFs"><svg class="ic"><use href="#i-gif"/></svg><span>GIF</span></button>
+    <button class="tool" id="drawBtn" title="Draw something"><svg class="ic"><use href="#i-pen"/></svg><span>Draw</span></button>
+    <button class="tool" id="linkBtn" title="Embed a link"><svg class="ic"><use href="#i-link"/></svg><span>Link</span></button>
+    <button class="tool" id="micBtn" title="Dictate your story"><svg class="ic"><use href="#i-mic"/></svg><span>Dictate</span></button>
+    <button class="tool tool-voice" id="recordBtn" title="Record a voice note"><span class="record-icon"></span><span>Voice note</span></button>
+   </div>
+   <div class="save-actions">
+     <button class="subtle-button" id="listenBtn" title="Read story aloud"><svg class="ic"><use href="#i-play"/></svg><span>Listen</span></button>
+     <button class="primary" id="saveBtn"><svg class="ic"><use href="#i-check"/></svg><span>Save story</span></button>
+   </div>
+  </div>
+  <div class="upload-progress" id="uploadProgress" hidden><div class="progress-text"><span id="progressName">Saving files</span><span id="progressCount"></span></div><div class="track"><div class="fill" id="progressFill"></div></div></div>
+  <input id="filePicker" type="file" multiple hidden accept="image/*,video/*,audio/*,.pdf,.txt,.heic,.heif,.mov,.mp4,.webm,.m4a">
+ </section>
+ <div class="bottom-bar"><p>For the memories you never want to lose.</p><div class="bottom-buttons"><button id="exportBtn">Export story</button><button id="importBtn">Import story</button><button id="resetBtn">Clear story</button></div></div>
+ <input id="importPicker" type="file" accept=".json,.date" hidden>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-root" id="modalRoot"></div>
+<div class="onboarding" id="onboarding" hidden>
+  <div class="onboard-blur"></div>
+  <section class="onboard-card" aria-labelledby="helloTitle" role="dialog" aria-modal="true">
+    <div class="welcome-mark">date<span>.</span></div>
+    <div class="onboard-illustration"><div class="scribble-heart">♡</div><span class="star star-one">✳</span><span class="star star-two">✳</span></div>
+    <h2 id="helloTitle">What should we call you?</h2>
+    <p>No accounts. Just your name.</p>
+    <form id="nameForm"><label class="sr-only" for="nameInput">Your name</label><input id="nameInput" placeholder="Your name" maxlength="36" required autocomplete="nickname"><button type="submit" aria-label="Continue"><svg class="ic"><use href="#i-arrow"/></svg></button></form>
+  </section>
+</div>
+<div class="tour" id="tour" hidden aria-live="polite">
+  <div class="tour-shade" id="shadeTop"></div><div class="tour-shade" id="shadeBottom"></div><div class="tour-shade" id="shadeLeft"></div><div class="tour-shade" id="shadeRight"></div>
+  <div class="tour-ring" id="tourRing"></div>
+  <section class="tour-card" id="tourCard" role="dialog" aria-label="Site tour">
+    <div class="tour-heading"><span id="tourIndex">01 / 06</span><button id="skipTour" aria-label="Skip tutorial"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <h2 id="tourTitle">Start here</h2><p id="tourText"></p>
+    <div class="tour-nav"><button id="tourBack">Back</button><button class="primary" id="tourNext">Next <svg class="ic"><use href="#i-arrow"/></svg></button></div>
+  </section>
+</div>
+</body>
+</html>
