@@ -15,7 +15,7 @@ const readStore = () => {try {return JSON.parse(localStorage.getItem(KEY)) || {}
 const base = {name:"",story:"",when:"",place:"",address:"",media:[]};
 let state = {...base,...readStore()};
 if (!Array.isArray(state.media)) state.media=[];
-let saveTimer, toastTimer, dbPromise, recognition, speaking=false, audioRecorder=null, audioStream=null, recordingParts=[];
+let saveTimer, toastTimer, dbPromise, recognition, audioRecorder=null, audioStream=null, recordingParts=[];
 let tourStep=0, tourActive=false, closeCurrentModal=()=>{};
 const memories = new Map();
 const escapeHtml = v => String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -83,9 +83,16 @@ function updateTour(){if(!tourActive)return;const step=steps[tourStep],target=$(
 function goTour(i){tourStep=Math.max(0,Math.min(steps.length-1,i));const target=$(steps[tourStep].selector);target?.scrollIntoView({behavior:"smooth",block:innerWidth<650?"center":"nearest"});updateTour();setTimeout(updateTour,350)}
 function stopTour(){tourActive=false;el("tour").hidden=true;localStorage.setItem("date.tour.seen","1")}
 function startTour(){if(el("onboarding").hidden===false)return;tourActive=true;el("tour").hidden=false;goTour(0)}
-function bind(){el("storyInput").addEventListener("input",e=>{state.story=e.target.value;updateWordCount();scheduleSave()});[["dateInput","when"],["placeInput","place"],["addressInput","address"]].forEach(([id,key])=>el(id).addEventListener("input",e=>{state[key]=e.target.value;scheduleSave()}));el("saveBtn").onclick=saveNow;el("uploadBtn").onclick=triggerUpload;el("filePicker").onchange=e=>{addFiles(e.target.files);e.target.value=""};el("cameraBtn").onclick=openCamera;el("gifBtn").onclick=openGifs;el("drawBtn").onclick=openDraw;el("linkBtn").onclick=openLink;el("micBtn").onclick=toggleDictation;el("recordBtn").onclick=toggleVoiceNote;el("listenBtn").onclick=toggleListen;el("identityBtn").onclick=openIdentity;el("helpBtn").onclick=startTour;el("nameForm").onsubmit=e=>{e.preventDefault();setName(el("nameInput").value);if(!localStorage.getItem("date.tour.seen"))setTimeout(startTour,220)};el("tourNext").onclick=()=>{if(tourStep===steps.length-1)stopTour();else goTour(tourStep+1)};el("tourBack").onclick=()=>goTour(tourStep-1);el("skipTour").onclick=stopTour;window.addEventListener("resize",updateTour);window.addEventListener("scroll",updateTour,{passive:true});el("exportBtn").onclick=exportStory;el("importBtn").onclick=()=>el("importPicker").click();el("importPicker").onchange=e=>{importStory(e.target.files?.[0]);e.target.value=""};el("resetBtn").onclick=clearStory;
+function bind(){el("storyInput").addEventListener("input",e=>{state.story=e.target.value;updateWordCount();scheduleSave()});[["dateInput","when"],["placeInput","place"],["addressInput","address"]].forEach(([id,key])=>el(id).addEventListener("input",e=>{state[key]=e.target.value;scheduleSave()}));el("saveBtn").onclick=saveNow;el("uploadBtn").onclick=triggerUpload;el("filePicker").onchange=e=>{addFiles(e.target.files);e.target.value=""};el("cameraBtn").onclick=openCamera;el("gifBtn").onclick=openGifs;el("drawBtn").onclick=openDraw;el("linkBtn").onclick=openLink;el("micBtn").onclick=toggleDictation;el("recordBtn").onclick=toggleVoiceNote;el("identityBtn").onclick=openIdentity;el("helpBtn").onclick=startTour;el("nameForm").onsubmit=e=>{e.preventDefault();setName(el("nameInput").value);if(!localStorage.getItem("date.tour.seen"))setTimeout(startTour,220)};el("tourNext").onclick=()=>{if(tourStep===steps.length-1)stopTour();else goTour(tourStep+1)};el("tourBack").onclick=()=>goTour(tourStep-1);el("skipTour").onclick=stopTour;window.addEventListener("resize",updateTour);window.addEventListener("scroll",updateTour,{passive:true});el("exportBtn").onclick=exportStory;el("importBtn").onclick=()=>el("importPicker").click();el("importPicker").onchange=e=>{importStory(e.target.files?.[0]);e.target.value=""};el("resetBtn").onclick=clearStory;
 document.addEventListener("paste",e=>{if(!el("onboarding").hidden||$(".modal-backdrop"))return;const fs=[...(e.clipboardData?.items||[])].filter(x=>x.kind==="file").map(x=>x.getAsFile()).filter(Boolean);if(fs.length){e.preventDefault();addFiles(fs)}});
 const drop=el("writingSection");drop.addEventListener("dragover",e=>{if(e.dataTransfer?.types.includes("Files")){e.preventDefault();drop.style.outline="2px dashed #b88372"}});drop.addEventListener("dragleave",()=>drop.style.outline="");drop.addEventListener("drop",e=>{drop.style.outline="";if(e.dataTransfer?.files.length){e.preventDefault();addFiles(e.dataTransfer.files)}});
-window.addEventListener("beforeunload",()=>{clearTimeout(saveTimer);persist();recognition?.stop();speechSynthesis?.cancel?.()})}
-restoreForm();bind();renderMedia();if(!state.name){el("onboarding").hidden=false;setTimeout(()=>el("nameInput").focus(),320)}else if(!localStorage.getItem("date.tour.seen"))setTimeout(startTour,300);
+window.addEventListener("beforeunload",()=>{clearTimeout(saveTimer);persist();recognition?.stop();})}
+restoreForm();bind();renderMedia();
+const initialDraft=state.story;
+mediaStore("get","__story__").then(full=>{
+  if(typeof full==="string" && el("storyInput").value===initialDraft){
+    state.story=full;el("storyInput").value=full;updateWordCount()
+  }
+}).catch(()=>{});
+if(!state.name){el("onboarding").hidden=false;setTimeout(()=>el("nameInput").focus(),320)}else if(!localStorage.getItem("date.tour.seen"))setTimeout(startTour,300);
 })();
