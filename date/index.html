@@ -36,7 +36,7 @@
 </svg>
 <header class="topbar">
  <a class="wordmark" href="./" aria-label="date home">date<span>.</span></a>
- <div class="top-center">a little piece of us</div>
+ 
  <div class="top-actions">
    <span class="saved-status" id="saveState"><span class="save-dot"></span><span>Saved here</span></span>
    <button class="identity" id="identityBtn" title="Change your name"><span id="userInitial">?</span><span id="userLabel">Your name</span></button>
@@ -45,9 +45,9 @@
 </header>
 <main class="page">
  <div class="page-top">
-  <div class="overline"><span class="mini-heart">♥</span> A PLACE TO REMEMBER</div>
+  
   <h1>Our first date<span>.</span></h1>
-  <p class="subtitle">The little things. The whole story.</p>
+  
  </div>
  <section class="editor paper" id="writingSection">
   <div class="paper-head">
@@ -71,7 +71,7 @@
     </label>
   </div>
   <div class="writing" id="storyArea">
-    <textarea id="storyInput" aria-label="Our first date story" placeholder="Tell me everything. The way it started, what made you smile, the parts you want to remember..." spellcheck="true"></textarea>
+    <textarea id="storyInput" aria-label="Our first date story" placeholder="Write about your first date…" spellcheck="true"></textarea>
     <div class="wordline"><span id="wordCount">0 words</span><span>No character limit</span></div>
   </div>
   <div class="attachments" id="attachments" hidden><div class="attachments-top"><span>ATTACHED MOMENTS</span><span id="attachmentCount">0</span></div><div class="media-grid" id="mediaGrid"></div></div>
@@ -86,14 +86,14 @@
     <button class="tool tool-voice" id="recordBtn" title="Record a voice note"><span class="record-icon"></span><span>Voice note</span></button>
    </div>
    <div class="save-actions">
-     <button class="subtle-button" id="listenBtn" title="Read story aloud"><svg class="ic"><use href="#i-play"/></svg><span>Listen</span></button>
+     
      <button class="primary" id="saveBtn"><svg class="ic"><use href="#i-check"/></svg><span>Save story</span></button>
    </div>
   </div>
   <div class="upload-progress" id="uploadProgress" hidden><div class="progress-text"><span id="progressName">Saving files</span><span id="progressCount"></span></div><div class="track"><div class="fill" id="progressFill"></div></div></div>
   <input id="filePicker" type="file" multiple hidden accept="image/*,video/*,audio/*,.pdf,.txt,.heic,.heif,.mov,.mp4,.webm,.m4a">
  </section>
- <div class="bottom-bar"><p>For the memories you never want to lose.</p><div class="bottom-buttons"><button id="exportBtn">Export story</button><button id="importBtn">Import story</button><button id="resetBtn">Clear story</button></div></div>
+ <div class="bottom-bar"><div class="bottom-buttons"><button id="exportBtn">Export story</button><button id="importBtn">Import story</button><button id="resetBtn">Clear story</button></div></div>
  <input id="importPicker" type="file" accept=".json,.date" hidden>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
